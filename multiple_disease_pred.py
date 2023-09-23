@@ -18,14 +18,39 @@ parkinsons_model = pickle.load(open('C:\\Users\\asus\\OneDrive\\Documents\\sih\\
 
 with st.sidebar:
     
+    # css = """
+    #     <style>
+    #         #custom-option-menu{
+    #             color: red;
+    #         }
+    #     </style>
+    # """
+    
+    # st.markdown(css, unsafe_allow_html=True)
+        
+    # st.markdown('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">',unsafe_allow_html=True)
+    
     selected = option_menu('Contents',
                           
                           ['Introduction',
                            'Diabetes Prediction',
                            'Heart Disease Prediction',
-                           'Parkinson\'s Prediction'],
-                          icons=['person','activity','heart','hospital'],
-                          default_index=0)
+                           'Parkinson\'s Prediction',
+                           'Depression'],
+                          icons=['person','activity','heart','hospital','window'],
+                          default_index=0,
+                          key='custom-option-menu')
+
+    
+
+st.markdown("""
+            <style>
+            [data-testid="stSidebar"][aria-expanded="true"]{
+            min-width: 400px;
+            max-width: 400px;
+            }
+            </style>
+            """,unsafe_allow_html=True,)
     
     
 if(selected == 'Introduction'):
@@ -43,7 +68,7 @@ if(selected == 'Introduction'):
             }
             .type{
                 font-weight: bold;
-                font-size: 15px;
+                font-size: 16px;
                 overflow: hidden;
                 white-space: nowrap;
                 animation: typewriter 7s steps(100);
@@ -272,4 +297,63 @@ if (selected == "Parkinson's Prediction"):
         
     st.success(parkinsons_diagnosis)
 
-
+if (selected == 'Depression'):
+    html_code = """
+        <h1>Hello!</h1>
+        <h2>How are you feeling today? Feel Free to Connect with <a class="link" src="#">Jarvis</a>, our chatbot who is eager to talk to you!</h2>
+        <div class="container">
+            <div class="recieved">Hi. I'm feeling low.</div>
+            <div class="sent">I can Help!</div>
+        </div>
+    """
+    
+    css_code = """
+        <style>
+            body{
+                font-family: "HelveticaNeue-CondensedBold";
+                font-weight: bold;
+            }
+            h1,h2{
+                color: #034644;
+            }
+            h2{
+                position: relative;
+                top: -30px;
+            }
+            .container{
+                margin-top: 30px;
+                background-color: white;
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .sent{
+                margin-top: 15px;
+                margin-left: 15px;
+                border: 1px solid black;
+                padding: 10px;
+                border-radius: 7px;
+                background-color: skyblue;
+                width: fit-content;
+                color: white;
+            }
+            .recieved{
+                color: white;
+                margin-top: 10px;
+                border: 1px solid black;
+                padding: 10px;
+                border-radius: 7px;
+                text-align: right;
+                background-color: #034644;
+                margin-bottom: 15px;
+                width: fit-content;
+                position: relative;
+                left: 500px;
+            }
+            hover
+            .sent .recieved{
+                
+            }
+        </style>
+    """
+    st.markdown(html_code, unsafe_allow_html=True)
+    st.markdown(css_code, unsafe_allow_html=True)
